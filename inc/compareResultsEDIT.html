@@ -1,0 +1,39 @@
+<div id="compareResultsEDIT">
+  
+  <button id="logoutBtnRes" onclick="logout();" class="logoutBtn">Log Out</button>
+  <br><br>
+  <p id="editHead">Editing fields for </p>
+  <center style="color:red;"><b>Note*: None of these fields are required and can be left blank</b></center>
+
+  <br><br>
+  <form id="editForm" onsubmit="return false;">
+  <center><b>Questions to ask/Comments to make:</b> <br><br><textarea rows="5" cols="50"
+  style="position:relative;" type="text" id="editquestions" placeholder="Any Questions or Comments go here"/>
+  
+  <br><br>
+  <center id="preField1">Information/prior knowledge you would like to list about </center>
+  <input style="position:relative;" type="text" id="editField1_1" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField1_2" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField1_3" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField1_4" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField1_5" placeholder="Details"/>
+  
+  
+  <br><br>
+  <center id="preField2">Information/prior knowledge you would like to list about </center>
+  <input style="position:relative;" type="text" id="editField2_1" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField2_2" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField2_3" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField2_4" placeholder="Details"/>
+  <input style="position:relative;" type="text" id="editField2_5" placeholder="Details"/>
+  </form>
+
+  <p style="clear:both;">
+
+  <button type="button" id="saveResults" onclick="saveRes();">Save Changes</button>
+  <button type="button" id="backResults" onclick="backToRes();">Back to Comparisons</button>
+
+  </p>
+</div>
+
+

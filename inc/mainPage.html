@@ -1,0 +1,36 @@
+      <div id="mainPage">
+
+        <button id="logoutBtnMain" onclick="logout();" class="logoutBtn">Log Out</button>
+
+        <button id="myAccBtn" onclick="myAcc();" class="myAccBtn">My Account</button>
+        <button id="refreshBtn" onclick="refreshMain();" class="refreshBtn">Refresh Lists</button>
+        <br><br>
+	<p>You have arrived at the main page - Viewing as: <b>Ryan Yi</b></p>
+	
+	<span class="myComparisonSearch">
+
+          <h3 class="compHeader">My Comparison Search History</h3>
+          <hr>
+	  <form style="max-height:20vh;overflow:auto;">
+            <span id="myresults" class="resultsBox">
+
+	      <p>static 1 and static 2</p>
+	    </span>
+          </form>
+          <b><hr></b>
+	</span>
+        
+	<span class="globalCompSearch">
+	  <h3 class="compHeader">Global Recent Comparisons</h3>
+          <b><hr></b>
+	  <form style="max-height:20vh;overflow:auto;">
+	    <span id="globalresults" class="resultsBox">
+	      <p>static 1 and static 2</p>
+	    </span>
+	  </form>
+          <hr>
+	</span>
+
+	<button id="toCompareListMain" onclick="compareList()">Begin a Comparison</button>
+
+      </div>

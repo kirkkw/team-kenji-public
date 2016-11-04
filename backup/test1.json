@@ -1,0 +1,23 @@
+{
+  "myhistory": [
+    {
+      "field1": "A",
+      "field2": "B"
+    },
+    {
+      "field1": "C",
+      "field2": "D"
+    }
+  ],
+
+  "globalhistory": [
+    {
+      "field1": "Dog",
+      "field2": "Cat"
+    },
+    {
+      "field1": "Pro Genji",
+      "field2": "Kenji"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+    "myhistory": [
+        {
+            "id": "r3yi@ucsd.edu",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Computer Science",
+            "field2": "Mathematics-Computer Science"
+        },
+        {
+            "id": "jik013@ucsd.edu",
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "field1": "Cognitive Science",
+            "field2": "Mathematics-Computer Science"
+        }
+    ],
+    "globalhistory": [
+        {
+            "id": "r3yi@ucsd.edu",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Computer Science",
+            "field2": "Mathematics-Computer Science"
+        },
+        {
+            "id": "jik013@ucsd.edu",
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "field1": "Cognitive Science",
+            "field2": "Mathematics-Computer Science"
+        }
+    ]
+}

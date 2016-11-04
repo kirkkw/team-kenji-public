@@ -1,0 +1,36 @@
+{
+    "postList": [
+        {
+            "peid": "r3yi@ucsd.edu",
+            "question": "What is the difference?",
+            "in1_1": "it has computers",
+            "in1_2": "programming",
+            "in1_3": "languages",
+            "in1_4": "",
+            "in1_5": "",
+            "in2_1": "It has the word math",
+            "in2_2": "it looks like cs",
+            "in2_3": "",
+            "in2_4": "",
+            "in2_5": "",
+            "field1": "Computer Science",
+            "field2": "Mathematics-Computer Science"
+        },
+        {
+            "peid": "jik013@ucsd.edu",
+            "question": "Who wants to compare linguistics and math? jesus",
+            "in1_1": "a",
+            "in1_2": "1",
+            "in1_3": "1",
+            "in1_4": "11",
+            "in1_5": "1",
+            "in2_1": "11",
+            "in2_2": "1",
+            "in2_3": "1",
+            "in2_4": "1",
+            "in2_5": "1",
+            "field1": "Cognitive Science",
+            "field2": "Mathematics-Computer Science"
+        }
+    ]
+}
