@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComPair History</title>
+  <link rel="stylesheet" type="text/css" href="./page1css.css">
+  <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type = "text/javascript" language = "javascript">
+    $(document).ready(function() {
+      $.getJSON('test1.json', function(data){
+        console.log(data);
+	var searches = data.myhistory.map(function(result){
+          return result.field1 + " and " + result.field2;
+	});
+
+	var gSearches = data.globalhistory.map(function(result){
+	  return result.field1 + " and " + result.field2;
+	});
+
+	var mylist = '<p>' + searches.join('</p><hr /><p>') + '</p>';
+	$('#myresults').html(mylist);
+
+	var gList = '<p>' + gSearches.join('</p><hr /><p>') + '</p>';
+	$('#globalresults').html(gList);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!--Top Bar-->
+  <div class="header">    
+    <h1>ComPair</h1>
+    <p>Welcome "Will put var here later"   My Account   Logout</p>
+  </div>
+  <hr />
+
+  <!-- This area is what I compaired-->
+  <div class="myComparisonSearch">
+    <h3>Comparison Search History</h3>
+    <!--From here there should be generated html from the js files.-->
+    <!--For now it'll be static-->
+    <div id="myresults">
+      <p>Static1 and Static2</p>
+      <hr />
+      <p>Static3 and Static5</p>
+    </div>
+  </div>
+  
+  <hr />
+
+  <!-- This area is what was recently compaired-->
+  <div class="globalCompSearch">
+    <h3>Global Recent Comparisons</h3>
+    <!--From here there should be generated html from the js files.-->
+    <!--For now it'll be static-->
+    <div id="globalresults">
+      <p>Static1 and Static2</p>
+      <hr />
+      <p>Static3 and Static5</p>
+    </div>
+  </div>
+  <hr />
+
+  <div class="buttons">
+    <button class="cButton">Select Comparison Fields</button>
+  </div>
+
+
+
+</body>

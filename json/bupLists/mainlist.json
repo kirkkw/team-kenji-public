@@ -1,0 +1,104 @@
+{
+    "myhistory": [
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Computer Science",
+            "field2": "Philosophy"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Literature",
+            "field2": "Physics"
+        },
+        {
+            "id": "test",
+            "firstname": "test",
+            "lastname": "test",
+            "field1": "Psychology",
+            "field2": "Computer Science"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Mechanical and Aerospace Engineering ",
+            "field2": "NanoEngineering"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Computer Engineering",
+            "field2": "Mechanical and Aerospace Engineering "
+        },
+        {
+            "id": "jik013@ucsd.edu",
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "field1": "Cognitive Science",
+            "field2": "Computer Science"
+        },
+        {
+            "id": "test",
+            "firstname": "test",
+            "lastname": "test",
+            "field1": "Computer Science",
+            "field2": "Applied Mathematics"
+        }
+    ],
+    "globalhistory": [
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Computer Science",
+            "field2": "Philosophy"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Literature",
+            "field2": "Physics"
+        },
+        {
+            "id": "test",
+            "firstname": "test",
+            "lastname": "test",
+            "field1": "Psychology",
+            "field2": "Computer Science"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Mechanical and Aerospace Engineering ",
+            "field2": "NanoEngineering"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Computer Engineering",
+            "field2": "Mechanical and Aerospace Engineering "
+        },
+        {
+            "id": "jik013@ucsd.edu",
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "field1": "Cognitive Science",
+            "field2": "Computer Science"
+        },
+        {
+            "id": "test",
+            "firstname": "test",
+            "lastname": "test",
+            "field1": "Computer Science",
+            "field2": "Applied Mathematics"
+        }
+    ]
+}

@@ -1,6 +1,34 @@
 {
     "myhistory": [
         {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Applied Engineering",
+            "field2": "Mathematics"
+        },
+        {
+            "id": "ryanyi@gmail.com",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Music",
+            "field2": "Applied Mathematics"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Applied Engineering",
+            "field2": "Cognitive Science"
+        },
+        {
+            "id": "r3yi@ucsd.edu",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Applied Agriculture",
+            "field2": "Applied Linguistics"
+        },
+        {
             "id": "r3yi@ucsd.edu",
             "firstname": "Ryan",
             "lastname": "Yi",
@@ -16,6 +44,34 @@
         }
     ],
     "globalhistory": [
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Applied Engineering",
+            "field2": "Mathematics"
+        },
+        {
+            "id": "ryanyi@gmail.com",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Music",
+            "field2": "Applied Mathematics"
+        },
+        {
+            "id": "admin@ucsd.edu",
+            "firstname": "admin",
+            "lastname": "account",
+            "field1": "Applied Engineering",
+            "field2": "Cognitive Science"
+        },
+        {
+            "id": "r3yi@ucsd.edu",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Applied Agriculture",
+            "field2": "Applied Linguistics"
+        },
         {
             "id": "r3yi@ucsd.edu",
             "firstname": "Ryan",

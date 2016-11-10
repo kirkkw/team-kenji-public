@@ -1,0 +1,28 @@
+{
+    "logininfo": [
+        {
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "userID": "jisu",
+            "password": "kang",
+            "email": "jik013@ucsd.edu",
+            "userNum": "3"
+        },
+        {
+            "firstname": "test",
+            "lastname": "test",
+            "userID": "test",
+            "password": "test",
+            "email": "test",
+            "userNum": "2"
+        },
+        {
+            "firstname": "admin",
+            "lastname": "account",
+            "userID": "admin",
+            "password": "password",
+            "email": "admin@ucsd.edu",
+            "userNum": "1"
+        }
+    ]
+}

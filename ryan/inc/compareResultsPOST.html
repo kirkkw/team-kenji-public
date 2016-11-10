@@ -1,0 +1,95 @@
+<div id="compareResultsPOST">
+  
+
+  <button id="logoutBtnRes" onclick="logout();" class="logoutBtn">Log Out</button>
+  <span id="editChecker"></span>
+  <button id="refreshResults" onclick="refreshRes();" class="refreshBtn">Refresh Lists</button>
+  
+  <br><br>
+
+  <p id="mainCompare">Compairing: </p>
+  <p id="authorCheck">Post By: </p>
+  <p id="uinput"></p>
+
+
+  <h3 style="width:45%;float:left;margin-left:4%;margin-right:1%;" id="leftRes"></h3>
+  <h3 style="width:45%;float:right;margin-right:4%;margin-left:1%;" id="rightRes"></h3>
+  
+  <br><br>
+  <span style="width:45%;-webkit-box-sizing: border-box;
+  box-sizing:border-box; -moz-box-sizing:border-box;
+  border:5px solid #d9b38c;height:50vh; overflow:auto;float:left;
+  margin-left:4%;margin-right:1%;border-radius:15px; margin-bottom:1%;">
+  
+  <table class="resultsListLeft"><br><br>
+  
+
+  <b>Provided</b><hr>
+  <thead >
+    <h4 id="initInfoLeft" style="height:12vh;overflow:auto;"></h4>
+  </thead>
+
+
+  <form id="leftCom" onsubmit="return false;" >
+  <input style="line-height:2em;" type="text" name="myComment" id="leftComment"  placeholder="Write a comment here"/>
+  <button type="button" onclick="addComment(this);" class="midBtn" data-value="left">Add Comment</button>
+ <!-- <input type="submit" onclick="addComment(this);" value="Add Comment" data-value="left">-->
+  </form>
+  <br>
+  <b>Comments</b><hr>
+  <tbody id="resultsLeft"></tbody>
+  <p id="leftCommentField"></p>
+  </table>
+
+
+
+
+  </span>
+
+  
+  
+  <span style="width:45%;-webkit-box-sizing: border-box;
+  box-sizing:border-box; -moz-box-sizing:border-box;
+  border:5px solid #d9b38c;height:50vh; overflow:auto;float:right;
+  margin-right:4%;margin-left:1%;border-radius:15px; margin-bottom:1%;">
+  
+  <table class="resultsListRight"><br><br>
+  
+
+  <b>Provided</b><hr>
+  <thead >
+    <h4 id="initInfoRight" style="height:12vh;overflow:auto;"></h4>
+  </thead>
+
+
+
+  <form id="rightCom" onsubmit="return false;" >
+  <input style="line-height:2em";type="text" name="myComment" id="rightComment" placeholder="Write a comment here"/>
+  <button type="button" onclick="addComment(this);" class="midBtn" data-value="right">Add Comment</button>
+  </form>
+
+  <br>
+  
+  <b>Comments</b><hr>
+  <tbody id="resultsRight"></tbody>
+  </table>
+  
+
+  </span>
+
+
+ 
+  <p style="clear:both;">
+  <button id="toCompareListRes" onclick="compareList();">Do another comparison</button>
+  <button id="showMainRes" onclick="mainPage();">Back to Main Page</button>
+  </p>
+</div>
+
+<div id="del-com-modal" class="modal">
+  <div class="modalContext">
+    <span class="close" onclick="deleteComModal();">x</span>
+    <p>Are you sure you want to delete this comment?</p>
+    <button id="yes-com-btn">Yes</button>
+    <button id="no-com-btn" onclick="deleteComModal();">No</button>
+  </div>
+</div>

@@ -1,7 +1,21 @@
 
 <div id="myAccount">
-  <p>Account settings can be modified here. This page is currently under development
-  <br>The feature will be implemented when the Login feature is added.</p>
+  <button id="refreshMyAcc" onclick="myAcc();" class="myAccBtn">Refresh Page
+  </button><br>
+  <h1>My Account</h1>
+  <p>You may change either your username or password here.</p>
+  <p style="color:red;">Note*: Not every field needs to be filled in.</p>
+  <form id="changeAcc" onsubmit="return false;">
+    <center>Desired Username:  <input class="fc" style="position:relative;" type="text" id="newRegID" placeholder="New User ID"/></center>
+    <center>Desired Password: <input class="fc" style="position:relative;" type="text" id="newPassword" placeholder="New Password"/></center>
+  </form>
+  <br>
+  <button type="button" id="newSubmit" onclick="changeLogin();">Save Changes</button>
   <button id="myAccBackBtn" onclick="mainPage();">Back</button>
 
+</div>
+
+<div id="accResults">
+  <p>Account details successfully modified</p>
+  <button id="acc_postChange" onclick="mainPage();">Back to Main Page</button>
 </div>

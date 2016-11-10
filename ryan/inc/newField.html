@@ -1,0 +1,19 @@
+<div id="newField">
+  
+  <div id="fieldForm">
+  <p>Add a new field</p>
+  
+  <form id="fieldInputForm" onsubmit="return false;">
+    <center>Field Name: <input style="position:relative; margin-bottom:2%; width: 25%;" type="text" id="fieldName" placeholder="Put your field name here"/></center>
+    
+  </form>
+  <button id="fieldAddBtn" onclick="addField();">Add the field</button>
+  <button id="toCompareList" onclick="compareList();">Back</button>
+  </div>
+  
+  <div id="fieldSuccess">
+    <center> Success! Field was added. <b>Please note it may take a minute or two to update.</b> </center>
+    <button id="backToCompareList" onclick="compareList();">Back to Comparison List</button>
+
+  </div>
+</div>

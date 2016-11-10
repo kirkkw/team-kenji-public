@@ -2,18 +2,19 @@
 
         <h1> Log In </h1>
         <form id="login" onsubmit="return false;">
-          <center>Username: <input style="position:relative;" type="text" 
+          <center>Username: <input style="position:relative;" type="text" class="fc"
 	  id="userID" placeholder="ID/Email"/></center>
-          <center>Password: <input style="position:relative;" type="text" 
+          <center>Password: <input style="position:relative;" type="password" class="fc"
 	  id="userPass" placeholder="Password" /></center>
 	  
 	  <br>
-	  <input id="loginSubmit" type="submit" onclick="checkLogin();"/>
 	
 
 	</form>
         
-
-        <button id="backButton" onclick="initBackBtn();">Back</button>
+        <button id="loginSubmit" type="button" onclick="checkLogin();">Log In</button>
+        
+	<br>
+	<button class="logoutBtn" style="float:none;"id="backButton" onclick="initBackBtn();">Back</button>
 
       </div>

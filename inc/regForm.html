@@ -4,21 +4,23 @@
 <form id="register" onsubmit="return false;">
 
 
-  <center>First Name: <input style="position:relative;" type="text" id="fname" placeholder="First Name"/></center>
-  <center>Last Name: <input style="position:relative;" type="text" id="lname" placeholder="Last Name"/></center>
-  <center>Username: <input style="position:relative;" type="text" id="regID" placeholder="ID/Email"/></center>         
-  <center>Password: <input style="position:relative;" type="text" id="regPass" placeholder="Password"/></center>
-
-  <center>Email: <input style="position:relative;" type="text" id="regEmail" placeholder="Email Address"/></center>
+  <center>First Name: <input class="fc" style="position:relative;" type="text" id="fname" placeholder="First Name"/></center>
+  <center>Last Name: <input class="fc" style="position:relative;" type="text" id="lname" placeholder="Last Name"/></center>
+  <center>Username: <input class="fc" style="position:relative;" type="text" id="regID" placeholder="ID/Email"/></center>         
+  <center>Password: <input class="fc" style="position:relative;" type="text" id="regPass" placeholder="Password"/></center>
+  <center>Email: <input class="fc" style="position:relative;" type="text" id="regEmail" placeholder="Email Address"/></center>
   <br>
-  <input id="regSubmit" type="submit" onclick="register();"/>
+
 
 </form>
 
-<button id="backButton" onclick="initBackBtn();">Back</button>
+<button id="regSubmit" type="button" onclick="register();">Submit Registration</button>
+<br>
+
+<button class="logoutBtn" style="float:none;" id="backButton" onclick="initBackBtn();">Back</button>
 </div>
 
 <div id="regResults">
-  <p>This feature is currently in development</p>
+  <p>Account was Successfully Created</p>
   <button id="login_postreg" onclick="login();">Log In</button>
 </div>

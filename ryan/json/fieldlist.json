@@ -1,0 +1,43 @@
+{
+    "careerfield": [
+        {
+            "fieldName": "Musician"
+        },
+        {
+            "fieldName": "Music"
+        },
+        {
+            "fieldName": "Applied Agriculture"
+        },
+        {
+            "fieldName": "Applied Engineering"
+        },
+        {
+            "fieldName": "Applied Linguistics"
+        },
+        {
+            "fieldName": "Applied Physics"
+        },
+        {
+            "fieldName": "Applied Mathematics"
+        },
+        {
+            "fieldName": "Cognitive Science"
+        },
+        {
+            "fieldName": "Computer Science"
+        },
+        {
+            "fieldName": "Communication"
+        },
+        {
+            "fieldName": "Mathematics"
+        },
+        {
+            "fieldName": "Mathematics-Computer Science"
+        },
+        {
+            "fieldName": "Psychology"
+        }
+    ]
+}

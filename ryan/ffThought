@@ -1,0 +1,6 @@
+ UID incrementing, do we want to use this?
+ PID (post ID)
+ animation
+ append a button with onclick delete(this) functio nthat allows users to delete their stuff
+on click when making the list create a functio nthat akes in the id number as it reads from the json file
+load (normal), createLoader, updatenLoad

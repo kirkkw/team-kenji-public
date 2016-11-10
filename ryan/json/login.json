@@ -1,0 +1,92 @@
+{
+    "logininfo": [
+        {
+            "firstname": "Donald",
+            "lastname": "Fucking Trump",
+            "userID": "shithead",
+            "password": "wall",
+            "email": "racist@usa.fucked",
+            "userNum": "3"
+        },
+        {
+            "firstname": "a",
+            "lastname": "a",
+            "userID": "a",
+            "password": "a",
+            "email": "a",
+            "userNum": "2"
+        },
+        {
+            "firstname": "j",
+            "lastname": "j",
+            "userID": "jj",
+            "password": "j",
+            "email": "j@j.j",
+            "userNum": "1"
+        },
+        {
+            "firstname": "Hi",
+            "lastname": "There",
+            "userID": "winston",
+            "password": "hi",
+            "email": "hi@hi.hi",
+            "userNum": "0"
+        },
+        {
+            "firstname": "Eman",
+            "lastname": "Hang",
+            "userID": "bob",
+            "password": "bob",
+            "email": "bob@bob.edu"
+        },
+        {
+            "firstname": "admin",
+            "lastname": "kang",
+            "userID": "admin",
+            "password": "password",
+            "email": "admin@ucsd.edu"
+        },
+        {
+            "firstname": "rai",
+            "lastname": "yan",
+            "userID": "raiyan",
+            "password": "yi",
+            "email": "r34yi@ucsd.edu"
+        },
+        {
+            "firstname": "Eman",
+            "lastname": "Hang",
+            "userID": "evanhong",
+            "password": "hong",
+            "email": "evanhong@jj.com"
+        },
+        {
+            "firstname": "1",
+            "lastname": "1",
+            "userID": "askdfjasldkf",
+            "password": "1",
+            "email": "asdfasdf"
+        },
+        {
+            "firstname": "1",
+            "lastname": "1",
+            "userID": "1",
+            "password": "1",
+            "email": "1"
+        },
+        {
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "userID": "ryanyi",
+            "password": "mypassword",
+            "email": "r3yi@ucsd.edu"
+        },
+        {
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "userID": "jisukang",
+            "password": "mypassword=)",
+            "email": "r3yi@ucsd.edu"
+        }
+    ]
+}

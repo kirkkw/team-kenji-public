@@ -7,7 +7,9 @@
     <title>ComPair</title>
 
   <span class="background-image"></span>
+
     <link rel="stylesheet" type="text/css" href="css/cssBox.css">
+
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -30,7 +32,10 @@
 	  $("#registerForm").hide();
 	});
 	$("#includeMyAcc").load("inc/myAcc.html", function(){
-          $("#myAccount").hide();
+          
+	  
+          $("#accResults").hide();
+	  $("#myAccount").hide();
 	});
 	$("#includeAddField").load("inc/newField.html", function(){
           $("#newField").hide();
@@ -61,13 +66,20 @@
 
 	});
 
+        $("#regErrUser").hide();
+        $("#loginErr").hide();
+
+        $("#regErrBoth").hide();
+        $("#regErrEmail").hide();
 	$("#commentErr").hide();
 	$("#commentAdd").hide();
  	$("#includeInit").load("inc/init.html");
         $("#validateMsg").hide();
         $("#deleteSuccess").hide();
         $("#validateListMsg").hide();
+
 	$("#validateField").hide();
+	$("#validateChange").hide();
 	$("#editSave").hide();
 
         $("#commentDel").hide();
@@ -86,6 +98,30 @@
     <center class="mainForm">
       <br>
 
+
+     <b>
+      <div id="validateChange" style="color:red;">You must fill out at least one field to make a change.</div>
+      <div id="validateMsg" style="color:red;">Note*: All fields must be filled in</div>
+      <div id="validateListMsg" style="color:red;"><b>Note*: Two different fields must be selected</b></div>
+
+      <div id="editSave" style="color:blue;"><b>Details saved successfully</b></div>
+      <div id="validateField" style="color:red;"><b>Selected Field Already Exists</b></div>
+      <div id="deleteSuccess" style="color:blue;"><b>Delete Successful - it may a minute for the changes to process.</b></div>
+
+
+      <div id="commentErr" style="color:red;"><b>You cannot submit an empty comment</b></div>
+
+      <div id="commentAdd" style="color:blue;"><b>Post added - you may need to refresh to view the update</b></div>
+      <div id="commentDelSuc" style="color:blue;"><b>Comment Successfully Deleted</b></div>
+      
+
+
+      <div id="loginErr" style="color:red;"><b>The Username or Password is Incorrect</b></div>
+      <div id="regErrUser" style="color:red;"><b>The Username already exists</b></div>
+      <div id="regErrEmail" style="color:red;"><b>The Email already exists</b></div>
+      <div id="regErrBoth" style="color:red;"><b>The Username and Email already exists</b></div>
+      <div id="commentDel" style="color:red;"><b>Only the commenter is able to delete a comment</b></div>
+      </b>
       <span id="includeInit"></span>
 
 
@@ -108,20 +144,6 @@
       <span id="includeCompResPOST"></span>
 
 
-      <div id="validateMsg" style="color:red;">Note*: All fields must be filled in</div>
-      <div id="validateListMsg" style="color:red;"><b>Note*: Two different fields must be selected</b></div>
-
-      <div id="editSave" style="color:blue;"><b>Details saved successfully</b></div>
-      <div id="validateField" style="color:red;"><b>Selected Field Already Exists</b></div>
-      <div id="deleteSuccess" style="color:blue;"><b>Delete Successful - it may a minute for the changes to process.</b></div>
-
-
-      <div id="commentErr" style="color:red;"><b>You cannot submit an empty comment</b></div>
-
-      <div id="commentAdd" style="color:blue;"><b>Post added - you may need to refresh to view the update</b></div>
-      <div id="commentDelSuc" style="color:blue;"><b>Comment Successfully Deleted</b></div>
-      
-      <div id="commentDel" style="color:red;"><b>Only the commenter is able to delete a comment</b></div>
 
 
       <div id="del-modal" class="modal">

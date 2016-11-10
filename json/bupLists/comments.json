@@ -1,0 +1,16 @@
+{
+    "postBook": [
+      "postID": "",
+      "field1": "",
+      "field2": "",
+      "postComment": [
+        {
+	  "peid": "",
+	  "userComment": "",
+	  "userID": "",
+	  "side": "",
+	  "commentID": ""
+	}
+      ]
+    ]
+}

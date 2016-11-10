@@ -9,6 +9,8 @@ var rightSelected;
 var peid;
 var pfn;
 var pln;
+var username;
+var password;
 /*** POST FIELDS ****/
 
 
@@ -28,11 +30,14 @@ var info2_5;
 
 /*******COMMENT COUNTER*****/
 var commentCounter;
-var increment = 1;
+var userNum = 0;
 
 /**************LOGIN/REG SCRIPTS*********************/
 
 function checkLogin(){
+
+  var loginSucc = false;
+
   //id can be ID or email
   var uid = document.getElementById("userID").value;
   var pass = document.getElementById("userPass").value;
@@ -43,8 +48,33 @@ function checkLogin(){
   else{ 
     console.log(uid);
     console.log(pass);
-    //check username and set id variable so we can grab data
-    loginSuccess();
+
+    $.getJSON("../compair_a6/json/login.json", function(data){
+      console.log(data);
+      
+      for(var i = 0; i < data.logininfo.length; i++){
+        var dataID = data.logininfo[i].userID;
+	var dataPass = data.logininfo[i].password;
+	var dataEmail = data.logininfo[i].email;
+        var dataFirst = data.logininfo[i].firstname;
+	var dataLast = data.logininfo[i].lastname;
+        var dataNum = data.logininfo[i].userNum;
+        
+	if( (uid == dataID || uid == dataEmail) && (pass == dataPass)){
+          console.log("Found the account!");
+	  console.log("UserNum: " + dataNum);
+	  loginSuccess(dataID, dataEmail, dataFirst, dataLast, dataPass, dataNum);
+	  loginSucc = true;
+	  break;
+	}
+      }
+      if(!loginSucc){
+
+        $("#loginErr").fadeIn(400);
+        $("#loginErr").fadeOut(900);
+        console.log("This username or password is incorrect.");
+      }
+    });
   }
 }
 
@@ -56,6 +86,9 @@ function register(){
   var pass = document.getElementById("regPass").value;
   var uemail = document.getElementById("regEmail").value;
 
+  //ONLY MOVE ONTO A NEW PAGE IF WE ACTUALLY GOT A NEW REGISTER.
+  var newRegister = true;
+  
   if(firstname=="" || firstname==null || lastname=="" || lastname==null || 
   uid=="" || uid==null || pass=="" || pass==null || uemail=="" || uemail==null){
     validate();
@@ -67,27 +100,105 @@ function register(){
     console.log(pass);
     console.log(uemail);
 
-    //register stuff ehre
+    $.getJSON('../compair_a6/json/login.json', function(data){
+      console.log(data);
+      //First get the userNum.
+      if(data.logininfo[0].userNum != null){
+        userNum = parseInt(data.logininfo[0].userNum) + 1;
+      }
+      else{
+        userNum = 0;
+      }
+      //check to make sure that userID and email are unique.
+      for(var i = 0; i < data.logininfo.length; i++){
+        var dataID = data.logininfo[i].userID;
+	var dataEmail = data.logininfo[i].email;
+        
+	if(dataID == uid){
+          newRegister = false;
+	  
+	  //CHANGE THIS CONSOLE TO THE ERROR MESSAGE AT BOTTOM OF SCREEN
+	  console.log("This username has already been used. Please pick a different one.");
 
-    registerSuccess();
+	  if(dataEmail == uemail){
+
+
+	    $("#regErrBoth").fadeIn(400);
+	    $("#regErrBoth").fadeOut(900);
+	  }
+	  else{
+
+	    $("#regErrUser").fadeIn(400);
+	    $("#regErrUser").fadeOut(900);
+
+	  }
+	}
+	else{
+          if(dataEmail == uemail){
+            newRegister = false;
+
+	    $("#regErrEmail").fadeIn(400);
+	    $("#regErrEmail").fadeOut(900);
+	    //CHANGE THIS CONSOLE TO THE ERROR MESSAGE AT BOTTOM OF SCREEN.
+	    console.log("This email already exists. Please enter a new one.");
+	  }
+	}
+      }
+
+      if(newRegister){
+        //Create json object
+        var obj = '{"firstname": "' + firstname + '", "lastname": "' + lastname+ '", "userID": "' + uid + '", "password": "' + pass + '", "email": "' + uemail + '", "userNum": "' + userNum + '"}'
+
+        var jsonObj = JSON.parse(obj);       
+	data.logininfo.unshift(jsonObj);  
+      
+        console.log(data);
+
+        $.ajax({
+          type:"POST",
+	  url: "inc/register.php",
+	  data: {myJSON: data},
+	  success: function(mydata){
+            console.log("Successfully registered!");
+	  },
+	  error: function(e){
+	    console.log(e);
+	  }
+        });
+     }
+    if(newRegister){
+      
+      registerSuccess();
+    }
+    });
   }
 }
 
 function validate(){
   $("#validateMsg").fadeIn(400);
+  $("#validateMsg").fadeOut(900);
 }
 
 //need to make failure functions later
-function loginSuccess(){
+function loginSuccess(userName, email, FirstName, LastName, mPassword, myUserNum){
 
   var form = document.getElementById("login");
 
   //later on _ wll have login validate function where uid is set
-  uid = "r3yi@ucsd.edu";
-  firstN = "Ryan";
-  lastN = "Yi";
-  peid = "r3yi@ucsd.edu";
-
+  uid = email;
+  firstN = FirstName;
+  lastN = LastName;
+  peid = email;
+  username = userName;
+  password = mPassword;
+  userNum = myUserNum;
+  console.log(uid);
+  console.log(firstN);
+  console.log(lastN);
+  console.log(peid);
+  console.log(username);
+  console.log(password);
+  console.log(userNum);
   form.reset();
   mainPage();
 }
@@ -98,6 +209,82 @@ function registerSuccess(){
   $("#regResults").fadeIn(400);
   var form = document.getElementById("register");
   form.reset();
+}
+
+function changeLogin(){
+  var form = document.getElementById('changeAcc');
+  
+  var newRegID = document.getElementById('newRegID').value;
+  var newPassword = document.getElementById('newPassword').value;
+
+  console.log(newRegID);
+  console.log(newPassword);
+  if( (newRegID == null || newRegID == "") && (newPassword == null || newPassword == "")){
+    $("#validateChange").fadeIn(400);
+    $("#validateChange").fadeOut(900);
+    console.log("No new changes were detected. Nothing was changed.");
+    form.reset();
+  }
+  else{
+    $.getJSON("../compair_a6/json/login.json", function(data){
+      console.log(data);
+      var myLogin;
+      var usernameTaken = false;
+      //find the entry with the correct login info.
+      //first check to make sure username hasn't been taken already.
+      for(var i = 0; i < data.logininfo.length; i++){
+        var dataUsername = data.logininfo[i].userID;
+	if(newRegID == dataUsername){
+	  $("#regErrUser").fadeIn(400);
+	  $("#regErrUser").fadeOut(900);
+          console.log("That username already exists.");
+	  usernameTaken = true;
+	  break;
+	}
+      }
+
+      if(!usernameTaken){
+        for(var i = 0; i < data.logininfo.length; i++){
+          var dFirst = data.logininfo[i].firstname;
+	  var dLast = data.logininfo[i].lastname;
+	  var dID = data.logininfo[i].userID;
+	  var dPass = data.logininfo[i].password;
+	  var dEmail = data.logininfo[i].email;
+
+	  if( (firstN == dFirst) && (lastN == dLast) && (username = dID) && (password = dPass) && (peid == dEmail)){
+            myLogin = data.logininfo[i];
+	    break;
+	  }
+        }
+
+        if(newRegID != null && newRegID != ""){
+          myLogin.userID = newRegID;
+	  username = newRegID;
+        }
+        if(newPassword != null && newPassword != ""){
+          myLogin.password = newPassword;
+          password = newPassword;
+        }
+
+        console.log(data);
+
+        $.ajax({
+          type:"POST",
+	  url: "inc/register.php",
+	  data: {myJSON: data},
+	  success: function(mydata){
+            console.log("Successfully changed login details.");
+	    $("div").hide();
+	    $("#accResults").fadeIn(400);
+	  },
+	  error: function(e){
+            console.log(e);
+	  }
+        });
+      }
+      form.reset();
+    });
+  }
 }
 
 function openReg(){
@@ -119,6 +306,17 @@ function initBackBtn(){
 
 
 function logout(){
+  uid = "";
+  firstN = "";
+  lastN = "";
+  peid = "";
+  username = "";
+  userNum = 0;
+  console.log(uid);
+  console.log(firstN);
+  console.log(lastN);
+  console.log(peid);
+  console.log(username);
   $("div").hide();
   $("#loginMsg").fadeIn(400);
 
@@ -150,7 +348,7 @@ function refreshMain(){
 }
 
 function buildPage(){
-  $.getJSON('../a5_compair/json/mainlist.json', function(data){
+  $.getJSON('../compair_a6/json/mainlist.json', function(data){
 
     console.log(data);
     var searches = data.myhistory.map(function(result){
@@ -178,13 +376,16 @@ function buildPage(){
     });
    
     var gSearches = data.globalhistory.map(function(result){
+      var tempUid = result.id;
+      var tempFirstN = result.firstname;
+      var templastN = result.lastname;
       
       var rid=result.id;
       var rf1=result.field1;
       var rf2=result.field2;
       var rfn=result.firstname;
       var rln=result.lastname;
-      return "<p class='hoverable' onclick='findPost(this)' resid='"+rid+"' resf1='"+rf1
+      return "<span class='hoverable' onclick='findPost(this)' resid='"+rid+"' resf1='"+rf1
       +"' resfn='"+rfn+"' resln='"+rln+"' resf2='"+rf2+"'>"+
       result.firstname + " " + result.lastname + ": <b>"+result.field1+"</b> VS <b>"+result.field2+"</b>";
     });
@@ -194,8 +395,8 @@ function buildPage(){
 
     var gList = '<p>' + gSearches.join('</p><p>') + '</p>';
     $('#globalresults').html(gList);
-
-
+    
+    $('#myNameHeader').html(firstN + " " + lastN + " (" + userNum + ")");
   }).then(function(){
   
     $("#mainPage").fadeIn(400);
@@ -226,7 +427,7 @@ function deletePost(element){
   var resf2 = element.getAttribute("resf2");
     console.log("Deleting");
     //Get the JSON data from mainlist, then delete the selected entry.
-    $.getJSON('../a5_compair/json/mainlist.json', function(data){
+    $.getJSON('../compair_a6/json/mainlist.json', function(data){
       console.log("Getting mainlist.json");
       console.log(data);
       
@@ -271,7 +472,7 @@ function deletePost(element){
     }).then(function(){
 
     //Get the JSON data from resultslist, then delete the selected entry.
-    $.getJSON('../a5_compair/json/resultslist.json', function(data){
+    $.getJSON('../compair_a6/json/resultslist.json', function(data){
       console.log("Getting resultslist.json");
       console.log(data);
       
@@ -330,7 +531,7 @@ function refreshLists(){
 }
 
 function compareList(){
-  
+  console.log("username is: " + username); 
   //reset globals
   rightSelected = null;
   leftSelected = null;
@@ -408,6 +609,7 @@ function addField(){
   var fieldname = document.getElementById("fieldName").value;
   if(fieldname == "" || fieldname == null){
     $("#validateMsg").fadeIn(400);
+    $("#validateMsg").fadeOut(400);
     check1 = false;
   }
   
@@ -569,6 +771,9 @@ function refreshRes(){
 function editForm(){
   $("div").hide();
   setEdits();
+  
+  $("#preField3").append("<span class='appended'><b>"+field1+"</b></span>");
+  $("#preField4").append("<span class='appended'><b>"+field2+"</b></span>");
   $("#editHead").append("<span class='appended'><b>"+field1+"</b> and <b>"+field2+"</b></span>");
   $("#compareResultsEDIT").fadeIn(400);
 }
@@ -648,7 +853,6 @@ function writeEdits(){
         console.log(e);
       }
     }).then(function(){
-      //once delete goes through, add in the new edits
       data.postList.unshift(obj);
     
       $.ajax({
@@ -694,7 +898,7 @@ function callbackListWriter(check){
 
     $("#preField1").append("<span class='appended'><b>"+field1+"</b></span>");
     $("#preField2").append("<span class='appended'><b>"+field2+"</b></span>");
-
+    
 
   }
 
@@ -710,7 +914,6 @@ function compareResultsPOST(){
 }
 
 function populateRes(){
-
   $("#mainCompare").append("<span class='appended'><b> "+field1+"</b> and <b>"+field2+"</b></span>");
   $("#authorCheck").append("<span class='appended'><b> "+pfn+" "+pln+" </b></span>"); 
   $("#leftRes").append("<span class='appended'><b>"+field1+"</b></span>");
@@ -906,6 +1109,7 @@ function resetPre(){
 /********************************************************FIND POST****************************/
 function findPost(element){
   $(".appended").remove();
+  console.log(username + " is the username");
   console.log(element.getAttribute("resid"));
   console.log(element.getAttribute("resf1"));
   console.log(element.getAttribute("resf2"));
@@ -922,7 +1126,6 @@ function findPost(element){
 }
 
 function retrieveData(rid, rf1, rf2, rfn, rln){
-
 
   $.getJSON('json/resultslist.json', function(data){
     
@@ -986,9 +1189,9 @@ function testGlobal(){
 
 
 function openComments(){
-
-
-  $.getJSON('../a5_compair/json/comments.json', function(data){
+  $.getJSON('../compair_a6/json/comments.json', function(data){
+    console.log("MY PEID IS: " + uid);
+    console.log("UserNum is :" + userNum);
     var commentArray = "";
     for(var i =0;i<data.postBook.length; i++){
       var pField1 = data.postBook[i].field1;
@@ -1039,7 +1242,7 @@ return '<td class="appended hoverable" data-id="' + result.commentID + '" data-v
 function doubleCheck(){
 
 
-  $.getJSON('../a5_compair/json/comments.json', function(data){
+  $.getJSON('../compair_a6/json/comments.json', function(data){
     var commentArray = "";
     for(var i =0;i<data.postBook.length; i++){
       var pField1 = data.postBook[i].field1;
@@ -1090,11 +1293,10 @@ return '<td class="appended hoverable" data-id="' + result.commentID + '" data-v
   });
 }
 
-//EDITED FUNCTION
 function addComment(element){
-
   var side = element.getAttribute('data-value');
   var comment = "";
+  console.log("userNum is: " + userNum);
   console.log("ADDCOMMENT: Comment Counter is " +commentCounter);
   commentCounter++;
   console.log("ADDCOMMENT: Comment Counter is now " +commentCounter);
@@ -1109,9 +1311,9 @@ function addComment(element){
     $("#commentErr").fadeOut(2000);
   } else{
 
-    var obj='{"userComment": "'+comment.value+'", "userID": "'+uid+'", "side": "'+side+'", "commentID": "'+commentCounter+'" }';
+    var obj='{"peid": "' + uid + '", "userComment": "'+comment.value+'", "userID": "'+firstN + ' '+lastN+ ' (' + userNum+ ')", "side": "'+side+'", "commentID": "'+commentCounter+'" }';
     var jsonobj = JSON.parse(obj);
-    $.getJSON('../a5_compair/json/comments.json', function(data){
+    $.getJSON('../compair_a6/json/comments.json', function(data){
       for(var i=0;i<data.postBook.length;i++){
         var pField1 = data.postBook[i].field1;
 	var pField2 = data.postBook[i].field2;
@@ -1146,9 +1348,9 @@ function addComment(element){
 }
 
 function createPost(){
-  $.getJSON("../a5_compair/json/comments.json", function(data){
+  $.getJSON("../compair_a6/json/comments.json", function(data){
   
-    var obj='{"postID": "'+uid+'", "field1": "'+leftSelected+'", "field2": "'+rightSelected+'", "postComment":[{"userComment": "", "userId": "", "side": "", "commentID": ""}]}';
+    var obj='{"postID": "'+uid+'", "field1": "'+leftSelected+'", "field2": "'+rightSelected+'", "postComment":[{"userComment": "", "peid": "", "userId": "", "side": "", "commentID": ""}]}';
     commentCounter = 0;
     var jsonobj=JSON.parse(obj);
     data.postBook.unshift(jsonobj);
@@ -1158,15 +1360,20 @@ function createPost(){
       data: {myJSON: data},
       success: function(mydata){
         console.log("Creation Success");
+
+
+   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       },
       error: function(e){
         console.log(e);
+
+   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2");
       }
  
     });
 
   }).then(function(){
-  
+
   
       $("div").hide();
       $("#compareResultsPOST").fadeIn(400);
@@ -1175,9 +1382,8 @@ function createPost(){
 
 }
 
-//EDITED FUNCTION
 function deleteEntry(element){
-  $.getJSON("../a5_compair/json/comments.json", function(data){
+  $.getJSON("../compair_a6/json/comments.json", function(data){
     console.log("In delete entry");
     console.log(data);
     var id = element.getAttribute("resid");
@@ -1222,11 +1428,9 @@ function deleteEntry(element){
 }
 /***STRETCH METHOD****/
 
-//EDITED FUNCTION
 function deleteComment(element){
-  //var comment = element.getAttribute('data-com');
   var commentID = element.getAttribute('data-id');
-  $.getJSON("../a5_compair/json/comments.json", function(data){
+  $.getJSON("../compair_a6/json/comments.json", function(data){
     var checker = false;
     var dataComment ="";
     for (var i=0;i<data.postBook.length;i++){
@@ -1241,14 +1445,13 @@ function deleteComment(element){
       }
     }
       if(dataComment !== ""){
-      
         for(var i=0;i<dataComment.length;i++){
           console.log("Inside");
   	  console.log(i + " vs " + dataComment.length);
-	  //var pComment = dataComment[i].userComment;
-	  var pID = dataComment[i].userID;
+	  var myPeid = dataComment[i].peid;
+	  var myName = dataComment[i].userID;
 	  var cID  = dataComment[i].commentID;
-	  if(/*(pComment == comment) &&*/ (pID == uid) && (cID == commentID)){
+	  if( (uid == myPeid) && (cID == commentID)){
 	    console.log("Found a match!");
 	    dataComment.splice(i, 1);
 

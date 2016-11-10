@@ -1,0 +1,52 @@
+{
+    "logininfo": [
+        {
+            "firstname": "ryan",
+            "lastname": "yi",
+            "userID": "ryanyi2",
+            "password": "mypassword",
+            "email": "ryi@gmail.com",
+            "userNum": "6"
+        },
+        {
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "userID": "newryanyi",
+            "password": "newpassword",
+            "email": "ryanyi@gmail.com",
+            "userNum": "5"
+        },
+        {
+            "firstname": "bob",
+            "lastname": "bob",
+            "userID": "admin2",
+            "password": "password2",
+            "email": "hi",
+            "userNum": "4"
+        },
+        {
+            "firstname": "Jisu",
+            "lastname": "Kang",
+            "userID": "jisu",
+            "password": "kang",
+            "email": "jik013@ucsd.edu",
+            "userNum": "3"
+        },
+        {
+            "firstname": "test",
+            "lastname": "test",
+            "userID": "test",
+            "password": "test",
+            "email": "test",
+            "userNum": "2"
+        },
+        {
+            "firstname": "admin",
+            "lastname": "account",
+            "userID": "admin",
+            "password": "password",
+            "email": "admin@ucsd.edu",
+            "userNum": "1"
+        }
+    ]
+}
