@@ -1,6 +1,14 @@
 {
     "logininfo": [
         {
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "userID": "ryi",
+            "password": "ryi",
+            "email": "ryi@ryi.ryi",
+            "userNum": "9"
+        },
+        {
             "firstname": "Evan",
             "lastname": "Hong",
             "userID": "swh001",

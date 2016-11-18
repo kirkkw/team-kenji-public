@@ -1,18 +1,18 @@
 {
     "myhistory": [
         {
-            "id": "admin@ucsd.edu",
-            "firstname": "admin",
-            "lastname": "account",
-            "field1": "Music",
-            "field2": "Applied Linguistics"
-        },
-        {
             "id": "jungyong55@gmail.com",
             "firstname": "Jungyong",
             "lastname": "Yi",
             "field1": "Applied Linguistics",
             "field2": "Communication"
+        },
+        {
+            "id": "ryanyi@gmail.com",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Music",
+            "field2": "Applied Mathematics"
         },
         {
             "id": "r3yi@ucsd.edu",
@@ -38,18 +38,18 @@
     ],
     "globalhistory": [
         {
-            "id": "admin@ucsd.edu",
-            "firstname": "admin",
-            "lastname": "account",
-            "field1": "Music",
-            "field2": "Applied Linguistics"
-        },
-        {
             "id": "jungyong55@gmail.com",
             "firstname": "Jungyong",
             "lastname": "Yi",
             "field1": "Applied Linguistics",
             "field2": "Communication"
+        },
+        {
+            "id": "ryanyi@gmail.com",
+            "firstname": "Ryan",
+            "lastname": "Yi",
+            "field1": "Music",
+            "field2": "Applied Mathematics"
         },
         {
             "id": "r3yi@ucsd.edu",

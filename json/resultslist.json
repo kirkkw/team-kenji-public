@@ -1,22 +1,6 @@
 {
     "postList": [
         {
-            "peid": "admin@ucsd.edu",
-            "question": "",
-            "in1_1": "",
-            "in1_2": "",
-            "in1_3": "",
-            "in1_4": "",
-            "in1_5": "",
-            "in2_1": "",
-            "in2_2": "",
-            "in2_3": "",
-            "in2_4": "",
-            "in2_5": "",
-            "field1": "Music",
-            "field2": "Applied Linguistics"
-        },
-        {
             "peid": "jungyong55@gmail.com",
             "question": "",
             "in1_1": "",
@@ -31,6 +15,22 @@
             "in2_5": "",
             "field1": "Applied Linguistics",
             "field2": "Communication"
+        },
+        {
+            "peid": "ryanyi@gmail.com",
+            "question": "asd",
+            "in1_1": "asd",
+            "in1_2": "asd",
+            "in1_3": "asd",
+            "in1_4": "asd",
+            "in1_5": "asd",
+            "in2_1": "asd",
+            "in2_2": "asd",
+            "in2_3": "asd",
+            "in2_4": "asd",
+            "in2_5": "asd",
+            "field1": "Music",
+            "field2": "Applied Mathematics"
         },
         {
             "peid": "r3yi@ucsd.edu",

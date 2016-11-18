@@ -46,8 +46,11 @@ function checkLogin(){
     validate();
   }
   else{ 
+    console.log(uid);
+    console.log(pass);
 
     $.getJSON("../re_a7/json/login.json", function(data){
+      console.log(data);
       
       for(var i = 0; i < data.logininfo.length; i++){
         var dataID = data.logininfo[i].userID;
@@ -58,6 +61,8 @@ function checkLogin(){
         var dataNum = data.logininfo[i].userNum;
         
 	if( (uid == dataID || uid == dataEmail) && (pass == dataPass)){
+          console.log("Found the account!");
+	  console.log("UserNum: " + dataNum);
 	  loginSuccess(dataID, dataEmail, dataFirst, dataLast, dataPass, dataNum);
 	  loginSucc = true;
 	  break;
@@ -67,6 +72,7 @@ function checkLogin(){
 
         $("#loginErr").fadeIn(400);
         $("#loginErr").fadeOut(900);
+        console.log("This username or password is incorrect.");
       }
     });
   }
@@ -88,10 +94,16 @@ function register(){
     validate();
   }
   else{
+    console.log(firstname);
+    console.log(lastname);
+    console.log(uid);
+    console.log(pass);
+    console.log(uemail);
 
     $.getJSON('../re_a7/json/login.json', function(data){
+      console.log(data);
       //First get the userNum.
-      if(data.logininfo[0].userNum != null && data.logininfo[0].userNum != ""){
+      if(data.logininfo[0].userNum != null){
         userNum = parseInt(data.logininfo[0].userNum) + 1;
       }
       else{
@@ -106,6 +118,7 @@ function register(){
           newRegister = false;
 	  
 	  //CHANGE THIS CONSOLE TO THE ERROR MESSAGE AT BOTTOM OF SCREEN
+	  console.log("This username has already been used. Please pick a different one.");
 
 	  if(dataEmail == uemail){
 
@@ -127,6 +140,7 @@ function register(){
 	    $("#regErrEmail").fadeIn(400);
 	    $("#regErrEmail").fadeOut(900);
 	    //CHANGE THIS CONSOLE TO THE ERROR MESSAGE AT BOTTOM OF SCREEN.
+	    console.log("This email already exists. Please enter a new one.");
 	  }
 	}
       }
@@ -138,6 +152,7 @@ function register(){
         var jsonObj = JSON.parse(obj);       
 	data.logininfo.unshift(jsonObj);  
       
+        console.log(data);
 
         $.ajax({
           type:"POST",
@@ -177,6 +192,13 @@ function loginSuccess(userName, email, FirstName, LastName, mPassword, myUserNum
   username = userName;
   password = mPassword;
   userNum = myUserNum;
+  console.log(uid);
+  console.log(firstN);
+  console.log(lastN);
+  console.log(peid);
+  console.log(username);
+  console.log(password);
+  console.log(userNum);
   form.reset();
   mainPage();
 }
@@ -195,13 +217,17 @@ function changeLogin(){
   var newRegID = document.getElementById('newRegID').value;
   var newPassword = document.getElementById('newPassword').value;
 
+  console.log(newRegID);
+  console.log(newPassword);
   if( (newRegID == null || newRegID == "") && (newPassword == null || newPassword == "")){
     $("#validateChange").fadeIn(400);
     $("#validateChange").fadeOut(900);
+    console.log("No new changes were detected. Nothing was changed.");
     form.reset();
   }
   else{
     $.getJSON("../re_a7/json/login.json", function(data){
+      console.log(data);
       var myLogin;
       var usernameTaken = false;
       //find the entry with the correct login info.
@@ -211,6 +237,7 @@ function changeLogin(){
 	if(newRegID == dataUsername){
 	  $("#regErrUser").fadeIn(400);
 	  $("#regErrUser").fadeOut(900);
+          console.log("That username already exists.");
 	  usernameTaken = true;
 	  break;
 	}
@@ -239,6 +266,7 @@ function changeLogin(){
           password = newPassword;
         }
 
+        console.log(data);
 
         $.ajax({
           type:"POST",
@@ -284,6 +312,11 @@ function logout(){
   peid = "";
   username = "";
   userNum = 0;
+  console.log(uid);
+  console.log(firstN);
+  console.log(lastN);
+  console.log(peid);
+  console.log(username);
   $("div").hide();
   $("#loginMsg").fadeIn(400);
 
@@ -317,9 +350,7 @@ function refreshMain(){
 function buildPage(){
   $.getJSON('../re_a7/json/mainlist.json', function(data){
 
-    if(data == null){
-      data = JSON.parse('{"myhistory": [], "globalhistory": [] }');
-    }
+    console.log(data);
     var searches = data.myhistory.map(function(result){
       //find globals _ this is where you check with the globals that have been set already
       var tempUid = result.id;
@@ -335,6 +366,7 @@ function buildPage(){
 	var rf2=result.field2;
         var rfn=result.firstname;
 	var rln=result.lastname;
+        console.log(uid + " _ " + firstN + " - " + lastN);
         return "<span class='hoverable' onclick='findPost(this)' resfn='"+rfn
 	+"' resln='"+rln+"' resid='"+rid+"' resf1='"+rf1+"' resf2='"+rf2+"'>"+
 	result.firstname + " " + result.lastname + ": <b>"+result.field1+"</b> VS <b>"+result.field2+
@@ -353,11 +385,9 @@ function buildPage(){
       var rf2=result.field2;
       var rfn=result.firstname;
       var rln=result.lastname;
-      if(rf1 != "" && rf1 != null){
-        return "<span class='hoverable' onclick='findPost(this)' resid='"+rid+"' resf1='"+rf1
-        +"' resfn='"+rfn+"' resln='"+rln+"' resf2='"+rf2+"'>"+
-        result.firstname + " " + result.lastname + ": <b>"+result.field1+"</b> VS <b>"+result.field2+"</b>";
-      }
+      return "<span class='hoverable' onclick='findPost(this)' resid='"+rid+"' resf1='"+rf1
+      +"' resfn='"+rfn+"' resln='"+rln+"' resf2='"+rf2+"'>"+
+      result.firstname + " " + result.lastname + ": <b>"+result.field1+"</b> VS <b>"+result.field2+"</b>";
     });
 
     var mylist = '<p>' + searches.join('</p><p>') + '</p>';
@@ -395,27 +425,37 @@ function deletePost(element){
   var id = element.getAttribute("resid");
   var resf1 = element.getAttribute("resf1");
   var resf2 = element.getAttribute("resf2");
+    console.log("Deleting");
     //Get the JSON data from mainlist, then delete the selected entry.
     $.getJSON('../re_a7/json/mainlist.json', function(data){
+      console.log("Getting mainlist.json");
+      console.log(data);
       
       //We will loop through the given JSON files, to find the one to delete.
       //First is myhistory.
       for(var i = 0; i < data.myhistory.length; i++){
+        console.log(data.myhistory[i]);
 	var currData = data.myhistory[i];
 	if((currData.id == id) && (currData.field1 == resf1) && (currData.field2 == resf2) ){
+          console.log("Found a match!");
 	  data.myhistory.splice(i, 1);
 	  break;
 	}
       }
+      console.log(data);
 
       //Now we do global history.
       for(var i = 0; i < data.globalhistory.length; i++){
+        console.log(data.globalhistory[i]);
 	var currData = data.globalhistory[i];
 	if((currData.id == id) && (currData.field1 == resf1) && (currData.field2 == resf2) ){
+          console.log("Found a match!");
 	  data.globalhistory.splice(i, 1);
 	  break;
 	}
       }
+      console.log(data);
+
       //With the new data, we will send this to the php file.
       $.ajax({
         type:"POST",
@@ -433,15 +473,20 @@ function deletePost(element){
 
     //Get the JSON data from resultslist, then delete the selected entry.
     $.getJSON('../re_a7/json/resultslist.json', function(data){
+      console.log("Getting resultslist.json");
+      console.log(data);
       
       //We will loop through the given JSON files, to find the one to delete.     
         for(var i = 0; i < data.postList.length; i++){
+        console.log(data.postList[i]);
 	var currData = data.postList[i];
 	if((currData.peid == id) && (currData.field1 == resf1) && (currData.field2 == resf2) ){
+          console.log("Found a match!");
 	  data.postList.splice(i, 1);
 	  break;
 	}
       }
+      console.log(data);
 
       //With the new data, we will send this to the php file.
       $.ajax({
@@ -457,6 +502,7 @@ function deletePost(element){
       });
 
     }).then(function(){
+      console.log("Tyler Lands");
       deleteEntry(element);
 
     });
@@ -485,6 +531,7 @@ function refreshLists(){
 }
 
 function compareList(){
+  console.log("username is: " + username); 
   //reset globals
   rightSelected = null;
   leftSelected = null;
@@ -534,6 +581,7 @@ function leftLighter(element){
   element.style.backgroundColor="#ffe0b5";
   
   leftSelected = $(element).html();
+  console.log("Left Value is " + leftSelected);
 
 }
 
@@ -542,6 +590,7 @@ function rightLighter(element){
   element.style.backgroundColor="#ffe0b5";
   
   rightSelected = $(element).html();
+  console.log("Right Value is " + rightSelected);
 
 }
 
@@ -602,7 +651,9 @@ function callbackFieldVal(fieldname, check2, check1){
 
     var JSONobject = '{ "fieldName": "'+fieldname+ '"}';
     var obj = JSON.parse(JSONobject);
+    console.log(obj);
     $.getJSON('json/fieldlist.json', function(data){
+      console.log(data);
       data.careerfield.unshift(obj);
       $.ajax({
         type:"POST",
@@ -665,15 +716,19 @@ function validateLists(){
 function writeFields(){
   
   
+  console.log(rightSelected+leftSelected);
   
   var JSONobject = '{ "id": "' + uid  + '", "firstname": "' + firstN + '", "lastname": "'
   + lastN + '", "field1": "' + leftSelected + '", "field2": "' + rightSelected+ '"}';
 
   var obj = JSON.parse(JSONobject);
+  console.log(obj);
 
   $.getJSON('json/mainlist.json', function(data){
+    console.log(data);
     data.myhistory.unshift(obj);
     data.globalhistory.unshift(obj);
+    console.log(data);
     $.ajax({
       type:"POST",
       url: "inc/writejson.php",
@@ -692,6 +747,9 @@ function writeFields(){
 
   }).then(function(){
   
+      console.log("Writing finished");
+      console.log("Writing finished");
+      console.log("Writing finished");
       retrievePre();
       populateRes();
 //compareResultsPOST follow up callbacks
@@ -713,7 +771,10 @@ function refreshRes(){
 function editForm(){
   $("div").hide();
   setEdits();
-  $("#editHead").append("<span class='appended'><b>"+field1+"</b> and <b>"+field2+"</b></span>");
+  $(".appended2").remove();
+  $("#preField3").append("<span class='appended2'><b>"+field1+"</b></span>");
+  $("#preField4").append("<span class='appended2'><b>"+field2+"</b></span>");
+  $("#editHead").append("<span class='appended2'><b>"+field1+"</b> and <b>"+field2+"</b></span>");
   $("#compareResultsEDIT").fadeIn(400);
 }
 function backToRes(){
@@ -776,6 +837,7 @@ function writeEdits(){
 
       if((currData.peid == peid) && (currData.field1 == leftSelected) && (currData.field2 == rightSelected)){
         
+	console.log("Found post... splicing...");
         data.postList.splice(i,1);
       }
     }
@@ -836,7 +898,7 @@ function callbackListWriter(check){
 
     $("#preField1").append("<span class='appended'><b>"+field1+"</b></span>");
     $("#preField2").append("<span class='appended'><b>"+field2+"</b></span>");
-
+    
 
   }
 
@@ -893,9 +955,7 @@ function writePost(){
   var obj = JSON.parse(JSONobject);
 
   $.getJSON('json/resultslist.json', function(data){
-    if(data == null){
-
-    }
+    
     data.postList.unshift(obj);
     
     $.ajax({
@@ -915,6 +975,7 @@ function writePost(){
   
   
       //CONTINUE CALLBACK compareResultsPOST
+
       createPost();
 
     
@@ -1048,6 +1109,10 @@ function resetPre(){
 /********************************************************FIND POST****************************/
 function findPost(element){
   $(".appended").remove();
+  console.log(username + " is the username");
+  console.log(element.getAttribute("resid"));
+  console.log(element.getAttribute("resf1"));
+  console.log(element.getAttribute("resf2"));
   
   var rfn = element.getAttribute("resfn");
   var rln = element.getAttribute("resln");
@@ -1055,6 +1120,7 @@ function findPost(element){
   var rf1 = element.getAttribute("resf1");
   var rf2 = element.getAttribute("resf2");
 
+  console.log(rfn+rln);
   $("div").hide();
   retrieveData(rid, rf1, rf2, rfn, rln);
 }
@@ -1069,6 +1135,7 @@ function retrieveData(rid, rf1, rf2, rfn, rln){
       var currData = data.postList[i];
 
       if((currData.peid == rid) && (currData.field1 == rf1) && (currData.field2 == rf2)){
+        console.log("Found Data... Retrieving...");
         qandcom=currData.question;
 	info1_1=currData.in1_1;
 	info1_2=currData.in1_2;
@@ -1123,6 +1190,8 @@ function testGlobal(){
 
 function openComments(){
   $.getJSON('../re_a7/json/comments.json', function(data){
+    console.log("MY PEID IS: " + uid);
+    console.log("UserNum is :" + userNum);
     var commentArray = "";
     for(var i =0;i<data.postBook.length; i++){
       var pField1 = data.postBook[i].field1;
@@ -1130,34 +1199,31 @@ function openComments(){
       var pemailid = data.postBook[i].postID;
       
       if( (pemailid === peid) && (pField1 == field1) && (pField2 == field2) ){
+        console.log("PREFOUND");
 	commentArray = data.postBook[i].postComment;
+	console.log(commentArray);
 	break;
       }
     }
 
 
+    console.log(peid==pemailid);
+    console.log("'"+peid+"'"+"'"+pemailid+"'");
      
     if(commentArray !== ""){
       commentCounter = commentArray[0].commentID;
+      console.log("OPENCOMMENTS: Comment counter is " + commentCounter);
       var leftComments = commentArray.map(function(result){
         if(result.side == "left"){
-	  if(result.peid == uid){
-	    return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left"">' + result.userID + ': ' + result.userComment + '<button class="miniBtn" type="button" onclick="commentModal(this);">Delete</button></td>';
-	  }
-	  else{
-	     return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left">' + result.userID + ': ' + result.userComment + '</td>';
-          }
+ return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left" onclick="commentModal(this);">' + result.userID + ': ' + result.userComment + '</td>';
+ 
         }
       });
 
       var rightComments = commentArray.map(function(result){
         if(result.side == "right"){
-	  if(result.peid == uid){
-            return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="right"">' + result.userID + ': ' + result.userComment + '<button class="miniBtn" type="button" onclick="commentModal(this);">Delete</button></td>';
-	  }
-	  else{
-            return '<td class="appended" data-id="' + result.commentID + '" data-value="' + result.userComment + '" data-side="right">' + result.userID + ': ' + result.userComment + '</td>';
-         }
+return '<td class="appended hoverable" data-id="' + result.commentID + '" data-value="' + result.userComment + '" data-side="right" onclick="commentModal(this);">' + result.userID + ': ' + result.userComment + '</td>';
+
         }
       });
       var myLeftComments = '<tr>'+leftComments.join('</tr>');
@@ -1192,26 +1258,18 @@ function doubleCheck(){
     
     if(commentArray !== ""){
       commentCounter = commentArray[0].commentID;
+      console.log("DOUBLECHECK: Comment Counter is " + commentCounter);
       var leftComments = commentArray.map(function(result){
         if(result.side == "left"){
-	  if(uid == result.peid){
-            return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left">' + result.userID + ': ' + result.userComment + '<button data-id="' + result.commentID + '" class="miniBtn" type="button" onclick="commentModal(this);">Delete</button></td>';
-	  }
-	  else {
-            return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left">' + result.userID + ': ' + result.userComment + '</td>';
-          }
+ return '<td class="appended hoverable" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left" onclick="commentModal(this);">' + result.userID + ': ' + result.userComment + '</td>';
+ 
         }
       });
 
       var rightComments = commentArray.map(function(result){
         if(result.side == "right"){
-	  if(uid == result.peid){
-return '<td class="appended" data-id="' + result.commentID + '" data-com="' + result.userComment + '" data-side="left">' + result.userID + ': ' + result.userComment + '<button class="miniBtn" data-id="' + result.commentID + '" type="button" onclick="commentModal(this);">Delete</button></td>';
-	
-	  }
-	  else{
-            return '<td class="appended" data-id="' + result.commentID + '" data-value="' + result.userComment + '" data-side="right">' + result.userID + ': ' + result.userComment + '</td>';
-          }
+return '<td class="appended hoverable" data-id="' + result.commentID + '" data-value="' + result.userComment + '" data-side="right" onclick="commentModal(this);">' + result.userID + ': ' + result.userComment + '</td>';
+
         }
       });
       var myLeftComments = '<tr>'+leftComments.join('</tr>');
@@ -1239,7 +1297,10 @@ return '<td class="appended" data-id="' + result.commentID + '" data-com="' + re
 function addComment(element){
   var side = element.getAttribute('data-value');
   var comment = "";
+  console.log("userNum is: " + userNum);
+  console.log("ADDCOMMENT: Comment Counter is " +commentCounter);
   commentCounter++;
+  console.log("ADDCOMMENT: Comment Counter is now " +commentCounter);
   if(side=="left"){
     comment = document.getElementById('leftComment');
   } else {
@@ -1263,6 +1324,7 @@ function addComment(element){
 	  break;
 	}
       }
+      console.log(data);
       $.ajax({
         type:"POST",
 	url:"inc/updatecomments.php",
@@ -1288,6 +1350,7 @@ function addComment(element){
 
 function createPost(){
   $.getJSON("../re_a7/json/comments.json", function(data){
+  
     var obj='{"postID": "'+uid+'", "field1": "'+leftSelected+'", "field2": "'+rightSelected+'", "postComment":[{"userComment": "", "peid": "", "userId": "", "side": "", "commentID": ""}]}';
     commentCounter = 0;
     var jsonobj=JSON.parse(obj);
@@ -1299,14 +1362,20 @@ function createPost(){
       success: function(mydata){
         console.log("Creation Success");
 
+
+   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       },
       error: function(e){
+        console.log(e);
+
+   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2");
       }
  
     });
 
   }).then(function(){
 
+  
       $("div").hide();
       $("#compareResultsPOST").fadeIn(400);
   });
@@ -1316,6 +1385,8 @@ function createPost(){
 
 function deleteEntry(element){
   $.getJSON("../re_a7/json/comments.json", function(data){
+    console.log("In delete entry");
+    console.log(data);
     var id = element.getAttribute("resid");
     var resf1 = element.getAttribute("resf1");
     var resf2 = element.getAttribute("resf2");
@@ -1323,11 +1394,16 @@ function deleteEntry(element){
       var pID = data.postBook[i].postID;
       var pField1 = data.postBook[i].field1;
       var pField2 = data.postBook[i].field2;
-      if((pID==uid) && (pField1 == resf1) && (pField2 == resf2)){
+      console.log(pID + " vs " + uid);
+      console.log(pField1 + " vs " + resf1);
+      console.log(pField2 + " vs " + resf2);
+      if((pID==uid) && (pField1 == resf1) && (pField2 = resf2)){
+        console.log("Found a match!");
 	data.postBook.splice(i,1);
 	break;
       }
     }
+    console.log(data);
     $.ajax({
       type:"POST",
       url: "inc/updatecomments.php",
@@ -1362,17 +1438,22 @@ function deleteComment(element){
       var pField1 = data.postBook[i].field1;
       var pField2 = data.postBook[i].field2;
 
+      console.log(data.postBook[i].postID);
       if((pField1 ==field1) && (pField2==field2)){
         dataComment = data.postBook[i].postComment;
+        console.log("DELETECOMMENT: FOUND THE ARRAY!");
         break;
       }
     }
       if(dataComment !== ""){
         for(var i=0;i<dataComment.length;i++){
+          console.log("Inside");
+  	  console.log(i + " vs " + dataComment.length);
 	  var myPeid = dataComment[i].peid;
 	  var myName = dataComment[i].userID;
 	  var cID  = dataComment[i].commentID;
 	  if( (uid == myPeid) && (cID == commentID)){
+	    console.log("Found a match!");
 	    dataComment.splice(i, 1);
 
     $("#commentDelSuc").fadeIn(400);
