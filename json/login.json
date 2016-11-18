@@ -1,6 +1,22 @@
 {
     "logininfo": [
         {
+            "firstname": "Evan",
+            "lastname": "Hong",
+            "userID": "swh001",
+            "password": "emanhang",
+            "email": "swh001@ucsd.edu",
+            "userNum": "8"
+        },
+        {
+            "firstname": "Jungyong",
+            "lastname": "Yi",
+            "userID": "HentaiLover",
+            "password": "BokuNoPico",
+            "email": "jungyong55@gmail.com",
+            "userNum": "7"
+        },
+        {
             "firstname": "ryan",
             "lastname": "yi",
             "userID": "ryanyi2",

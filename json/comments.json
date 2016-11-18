@@ -2,9 +2,23 @@
     "postBook": [
         {
             "postID": "admin@ucsd.edu",
-            "field1": "Applied Engineering",
-            "field2": "Mathematics",
+            "field1": "Music",
+            "field2": "Applied Linguistics",
             "postComment": [
+                {
+                    "peid": "admin@ucsd.edu",
+                    "userComment": "hi alok",
+                    "userID": "admin account (1)",
+                    "side": "right",
+                    "commentID": "2"
+                },
+                {
+                    "peid": "admin@ucsd.edu",
+                    "userComment": "=^)",
+                    "userID": "admin account (1)",
+                    "side": "left",
+                    "commentID": "1"
+                },
                 {
                     "userComment": "",
                     "peid": "",
@@ -15,10 +29,59 @@
             ]
         },
         {
-            "postID": "ryanyi@gmail.com",
+            "postID": "admin@ucsd.edu",
             "field1": "Music",
             "field2": "Applied Mathematics",
             "postComment": [
+                {
+                    "peid": "admin@ucsd.edu",
+                    "userComment": "asdf",
+                    "userID": "admin account (1)",
+                    "side": "left",
+                    "commentID": "1"
+                },
+                {
+                    "peid": "admin@ucsd.edu",
+                    "userComment": "asd",
+                    "userID": "admin account (1)",
+                    "side": "right",
+                    "commentID": "2"
+                },
+                {
+                    "peid": "admin@ucsd.edu",
+                    "userComment": "asd",
+                    "userID": "admin account (1)",
+                    "side": "left",
+                    "commentID": "1"
+                },
+                {
+                    "userComment": "",
+                    "peid": "",
+                    "userId": "",
+                    "side": "",
+                    "commentID": ""
+                }
+            ]
+        },
+        {
+            "postID": "jungyong55@gmail.com",
+            "field1": "Applied Linguistics",
+            "field2": "Communication",
+            "postComment": [
+                {
+                    "peid": "jungyong55@gmail.com",
+                    "userComment": "Piko x Chico x Coco",
+                    "userID": "Jungyong Yi (7)",
+                    "side": "right",
+                    "commentID": "2"
+                },
+                {
+                    "peid": "jungyong55@gmail.com",
+                    "userComment": "Piko x Chico",
+                    "userID": "Jungyong Yi (7)",
+                    "side": "left",
+                    "commentID": "1"
+                },
                 {
                     "userComment": "",
                     "peid": "",

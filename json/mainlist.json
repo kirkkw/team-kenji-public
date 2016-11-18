@@ -4,22 +4,15 @@
             "id": "admin@ucsd.edu",
             "firstname": "admin",
             "lastname": "account",
-            "field1": "Applied Engineering",
-            "field2": "Mathematics"
-        },
-        {
-            "id": "ryanyi@gmail.com",
-            "firstname": "Ryan",
-            "lastname": "Yi",
             "field1": "Music",
-            "field2": "Applied Mathematics"
+            "field2": "Applied Linguistics"
         },
         {
-            "id": "admin@ucsd.edu",
-            "firstname": "admin",
-            "lastname": "account",
-            "field1": "Applied Engineering",
-            "field2": "Cognitive Science"
+            "id": "jungyong55@gmail.com",
+            "firstname": "Jungyong",
+            "lastname": "Yi",
+            "field1": "Applied Linguistics",
+            "field2": "Communication"
         },
         {
             "id": "r3yi@ucsd.edu",
@@ -48,22 +41,15 @@
             "id": "admin@ucsd.edu",
             "firstname": "admin",
             "lastname": "account",
-            "field1": "Applied Engineering",
-            "field2": "Mathematics"
-        },
-        {
-            "id": "ryanyi@gmail.com",
-            "firstname": "Ryan",
-            "lastname": "Yi",
             "field1": "Music",
-            "field2": "Applied Mathematics"
+            "field2": "Applied Linguistics"
         },
         {
-            "id": "admin@ucsd.edu",
-            "firstname": "admin",
-            "lastname": "account",
-            "field1": "Applied Engineering",
-            "field2": "Cognitive Science"
+            "id": "jungyong55@gmail.com",
+            "firstname": "Jungyong",
+            "lastname": "Yi",
+            "field1": "Applied Linguistics",
+            "field2": "Communication"
         },
         {
             "id": "r3yi@ucsd.edu",
